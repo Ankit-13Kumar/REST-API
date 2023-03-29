@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "dring.datasource.url",
+    "type": "java.lang.String",
+    "description": "A description for 'dring.datasource.url'"
+  },
+  {
+    "name": "spring.database.name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.database.name'"
+  }
+]}

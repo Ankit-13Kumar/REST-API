@@ -1,0 +1,139 @@
+----SpringBoot Step  Location Downloads
+ctrl+shift+f for format
+
+1===========1 = Employee Project===========================================
+
+1-create spring boot project
+2-create the domain model/Entities
+3-create the repositories
+4-configure the DataSource - interface crud repo - entities Employee ID Long
+5-up and running
+======================================================================
+--MySql Application properties
+#Changing the server port
+server.port=8080
+
+#debug=true 
+
+#Database Configuration:mysql
+spring.datasource.url=jdbc:mysql://localhost:3306/db
+spring.datasource.username=root
+spring.datasource.password=Ankit@123
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#hibernate configuration
+spring.jpa.database = MYSQL
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
+
+=========================================================================
+-------MySql Code
+
+use mydb
+
+create table employee(
+id int NOT NULL AUTO_INCREMENT,
+first_name varchar(20),
+last_name varchar(20),
+PRIMARY KEY (ID)
+)
+
+select * from employee
+=============================================================================
+
+
+-----postman
+= POST
+
+  {
+            "id":"1",
+        "firstName": "Ankit",
+        "lastName": "Rajvanshi"
+        }
+
+=GET
+http://localhost:7500/employees
+
+=========================================================================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 2 Project Event Management  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+======================STEP==============================
+1-CREATE spring boot PROJECT
+2-create the domain model/entities
+3-create the repository	
+4-configure the datasource
+5-up and running
+===============================================================
+
+
+
+Mysql----
+create table==========================================
+CREATE TABLE ORGANIZER
+(
+  ID int  NOT NULL AUTO_INCREMENT,NAME varchar(20)  NOT NULL, 
+  CREATED TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
+  PRIMARY KEY (ID)
+);
+
+
+CREATE TABLE VENUE
+(
+  ID         int NOT NULL AUTO_INCREMENT,
+  CREATED    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  NAME       varchar(256),
+  STREET_ADDRESS    varchar(256),
+  STREET_ADDRESS2   varchar(256),
+  CITY              varchar(256),
+  STATE             varchar(256),
+  COUNTRY           VARCHAR(256),
+  POSTAL_CODE       varchar(256),
+  PRIMARY KEY (ID)
+);
+
+
+CREATE TABLE EVENT
+(
+  ID              int	NOT NULL AUTO_INCREMENT,
+  CREATED         TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+  NAME            varchar(256),
+  DESCRIPTION     varchar(2048),
+  START_TIME      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  END_TIME        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  ZONE_ID         blob,
+  STARTED       int,
+  ORGANIZER_ID    int                          NOT NULL,
+  VENUE_ID        int,
+  PRIMARY KEY (ID),
+   FOREIGN KEY (ORGANIZER_ID) REFERENCES ORGANIZER(ID) ON DELETE CASCADE,
+  FOREIGN KEY (VENUE_ID) REFERENCES VENUE(ID)
+);
+
+
+CREATE TABLE PARTICIPANT
+(
+  ID  	int        NOT NULL AUTO_INCREMENT,
+  CREATED    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  NAME      varchar(256) NOT NULL,
+  EMAIL      varchar(256) NOT NULL,
+  CHECKED_IN   int,
+  EVENT_ID    int        NOT NULL,
+  PRIMARY KEY (ID),
+  FOREIGN KEY (EVENT_ID) REFERENCES event(ID),
+  UNIQUE (EVENT_ID, EMAIL)
+);
+
+
+
+==============================================
+2 drop table ================================
+
+drop table participant;
+drop table event;
+drop table venue;
+drop table organizer;
+
+
+============================================================
+
